@@ -43,6 +43,7 @@ proxies:
   - {name: Singapore-2, server: sg2-full.privateip.net, port: 443, udp: true, type: trojan, password: 93e0e3cc-f71a-441e-94d0-806d0c4f1152, sni: us04xmpp1.zoom.us, skip-cert-verify: true}
   - {name: Singapore-3, server: sg3-full.privateip.net, port: 443, udp: true, type: trojan, password: b3965d2d-3b82-45cc-927b-1336aca3f3fe, sni: us04xmpp1.zoom.us, skip-cert-verify: true}
   - {name: Indonesia-1, server: id-full.privateip.net, port: 443, udp: true, type: trojan, password: 83b1e430-be79-4318-a1a4-0dc470c00510, sni: us04xmpp1.zoom.us, skip-cert-verify: true}
+  - {name: Aus-1, server: au-full.privateip.net, port: 443, udp: true, type: trojan, password: 4f3e6fcf-0a5f-47d3-80bf-2655a70d15d5, sni: us04xmpp1.zoom.us, skip-cert-verify: true}
 
 proxy-groups:
   - name: lulzDev-clash
@@ -54,7 +55,8 @@ proxy-groups:
       - Singapore-1
       - Singapore-2
       - Singapore-3
-      - Indonesia-1     
+      - Indonesia-1
+      - Aus-1     
 
 
 rules:
