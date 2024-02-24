@@ -1,0 +1,61 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+mode: global
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+bind-address: "*"
+ipv6: false
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 0.0.0.0:7894
+  fallback-filter:
+    geoip: false
+    ipcidr:
+    - 240.0.0.0/4
+  nameserver:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - tls://1.1.1.1:853
+    - tls://8.8.8.8:853
+  fallback:
+    - tcp://1.1.1.1
+    - tcp://8.8.8.8
+    - 1.1.1.1
+    - 8.8.8.8
+tun:
+  enable: true
+  stack: system 
+  macOS-auto-route: true
+  macOS-auto-detect-interface: true
+  dns-hijack:
+    - tcp://8.8.8.8:53
+experimental:
+  interface-name: en0
+
+proxies:
+
+  - {name: Singapore-1, server: sg-full.privateip.net, port: 443, udp: true, type: trojan, password: 356a4485-dc7c-429e-ad11-bc7560c8e1fc, sni: us04xmpp1.zoom.us, skip-cert-verify: true}
+  - {name: Singapore-2, server: sg2-full.privateip.net, port: 443, udp: true, type: trojan, password: 93e0e3cc-f71a-441e-94d0-806d0c4f1152, sni: us04xmpp1.zoom.us, skip-cert-verify: true}
+  - {name: Singapore-3, server: sg3-full.privateip.net, port: 443, udp: true, type: trojan, password: b3965d2d-3b82-45cc-927b-1336aca3f3fe, sni: us04xmpp1.zoom.us, skip-cert-verify: true}
+  - {name: Indonesia-1, server: id-full.privateip.net, port: 443, udp: true, type: trojan, password: 83b1e430-be79-4318-a1a4-0dc470c00510, sni: us04xmpp1.zoom.us, skip-cert-verify: true}
+
+proxy-groups:
+  - name: lulzDev-clash
+    type: load-balance
+    strategy: consistent-hashing
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    proxies:
+      - Singapore-1
+      - Singapore-2
+      - Singapore-3
+      - Indonesia-1     
+
+
+rules:
+ - MATCH,lulzDev-clash
